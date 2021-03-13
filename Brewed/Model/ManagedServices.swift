@@ -44,7 +44,7 @@ class ManagedServices: ObservableObject, FileMonitorDelegate {
             }.cauterize()
     }
     
-    func deleted(url: URL, event: DispatchSource.FileSystemEvent) {
+    func fileEvent(url: URL, event: DispatchSource.FileSystemEvent) {
         DispatchQueue.main.async {
             self.refresh()
         }
