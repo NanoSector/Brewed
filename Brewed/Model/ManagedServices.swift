@@ -11,6 +11,8 @@ class ManagedServices: ObservableObject, FileMonitorDelegate {
     
     @Published var services: [Service] = []
     
+    @Published var refreshing = false
+    
     private var monitors: [URL: FileMonitor] = [:]
 
     func update(service: Service) {
@@ -26,6 +28,7 @@ class ManagedServices: ObservableObject, FileMonitorDelegate {
     }
 
     func refresh() {
+        refreshing = true
         ListServicesCommand().exec()
             .done { services in
                 self.monitors.removeAll()
@@ -41,6 +44,8 @@ class ManagedServices: ObservableObject, FileMonitorDelegate {
                         monitor.delegate = self
                     }
                 }
+            }.ensure {
+                self.refreshing = false
             }.cauterize()
     }
     

@@ -67,7 +67,7 @@ struct ServiceRow: View {
                     }
                 }
             }
-        }.disabled(executingCommand)
+        }.disabled(executingCommand || managedServices.refreshing)
     }
     
     func run() {

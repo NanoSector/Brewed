@@ -34,6 +34,10 @@ struct ContentView: View {
             )
         }
         .toolbar {
+            if managedServices.refreshing {
+                ProgressView().controlSize(.small)
+            }
+            
             Button(action: {
                 managedServices.refresh()
             }) {
