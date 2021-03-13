@@ -11,14 +11,14 @@ import SwiftUI
 struct ServiceRow: View {
     @EnvironmentObject var managedServices: ManagedServices
     @EnvironmentObject var globalAlert: GlobalAlert
-    
+
     let service: Service
-    
+
     @State private var showingPopover = false
     @State private var executingCommand = false
-    
+
     @State private var showingStartHelpPopover = false
-    
+
     var body: some View {
         HStack {
             Button(action: { showingPopover = true }) {
@@ -26,18 +26,18 @@ struct ServiceRow: View {
             }.popover(isPresented: $showingPopover, arrowEdge: .leading) {
                 ServiceInfo(service: service)
             }
-            
+
             VStack(alignment: .leading) {
                 Text(service.id)
-                
+
                 if service.user != nil {
                     Text("User: \(service.user!)")
                         .foregroundColor(.secondary)
                 }
             }
-            
+
             Spacer()
-            
+
             VStack {
                 HStack {
                     if service.status == .stopped {
@@ -54,7 +54,7 @@ struct ServiceRow: View {
                             Text("This will run the service now and when logging in as the current user.").padding()
                         }
                     }
-                    
+
                     if service.status == .started {
                         Button(action: stop) {
                             Image(systemName: "stop.fill")
@@ -69,26 +69,26 @@ struct ServiceRow: View {
             }
         }.disabled(executingCommand || managedServices.refreshing)
     }
-    
+
     func run() {
         handleRefresh(service.run())
     }
-    
+
     func start() {
         handleRefresh(service.start())
     }
-    
+
     func stop() {
         handleRefresh(service.stop())
     }
-    
+
     func restart() {
         handleRefresh(service.restart())
     }
-    
+
     func handleRefresh(_ promise: Promise<Void>) {
         executingCommand = true
-        
+
         promise.ensure(on: .main) {
             executingCommand = false
         }.catch(on: .main) { _ in

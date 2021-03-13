@@ -13,15 +13,15 @@ struct TimeLogger {
         let start = DispatchTime.now()
         let result = body()
         let end = DispatchTime.now()
-        
+
         let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
         let timeInterval = Double(nanoTime) / 1_000_000_000
         logger.debug("Took \(timeInterval) seconds.")
-        
+
         if timeInterval >= 3 {
             logger.warning("!!! Slow task detected: \(timeInterval) seconds. Please check debug output for specifics.")
         }
-        
+
         return result
     }
 }

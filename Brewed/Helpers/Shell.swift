@@ -29,7 +29,7 @@ struct Shell {
                 TimeLogger.logTime(logger: self.logger) {
                     task.launch()
                     logger.debug("Task with PID \(task.processIdentifier) started: \(task.launchPath!) \(task.arguments!.joined(separator: " "))")
-                    
+
                     task.waitUntilExit()
                     logger.debug("Task with PID \(task.processIdentifier) exited with code \(task.terminationStatus)")
                 }
@@ -55,7 +55,7 @@ protocol ShellCommandWrapper {
 
 extension Pipe {
     func toString() -> String {
-        let data = self.fileHandleForReading.readDataToEndOfFile()
+        let data = fileHandleForReading.readDataToEndOfFile()
         return String(data: data, encoding: .utf8)!
     }
 }

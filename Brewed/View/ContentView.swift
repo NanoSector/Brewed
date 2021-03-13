@@ -37,7 +37,7 @@ struct ContentView: View {
             if managedServices.refreshing {
                 ProgressView().controlSize(.small)
             }
-            
+
             Button(action: {
                 managedServices.refresh()
             }) {

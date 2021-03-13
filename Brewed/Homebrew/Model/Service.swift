@@ -13,7 +13,7 @@ struct Service: Identifiable {
     let status: ServiceStatus
     let user: String?
     let plist: URL?
-    
+
     func run() -> Promise<Void> {
         RunServiceCommand(service: self).exec().asVoid()
     }
@@ -21,11 +21,11 @@ struct Service: Identifiable {
     func start() -> Promise<Void> {
         StartServiceCommand(service: self).exec().asVoid()
     }
-    
+
     func stop() -> Promise<Void> {
         StopServiceCommand(service: self).exec().asVoid()
     }
-    
+
     func restart() -> Promise<Void> {
         RestartServiceCommand(service: self).exec().asVoid()
     }
