@@ -14,18 +14,6 @@ class ManagedServices: ObservableObject, FileMonitorDelegate, FolderMonitorDeleg
     @Published var refreshing = false
     
     private var monitors: [URL: FilesystemMonitor] = [:]
-
-    func update(service: Service) {
-        var services = self.services
-        
-        guard let index = services.firstIndex(where: { $0.id == service.id }) else {
-            services.append(service)
-            return
-        }
-        
-        services[index] = service
-        self.services = services
-    }
     
     let logger = Logger(subsystem: "nl.nanosector.Brewed.ManagedServices", category: "Service management")
 

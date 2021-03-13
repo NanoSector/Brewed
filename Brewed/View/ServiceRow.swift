@@ -86,18 +86,13 @@ struct ServiceRow: View {
         handleRefresh(service.restart())
     }
     
-    func handleRefresh(_ promise: Promise<Service>) {
+    func handleRefresh(_ promise: Promise<Void>) {
         executingCommand = true
         
-        DispatchQueue.global(qos: .background).async {
-            promise.done(on: .main) { service in
-                managedServices.update(service: service)
-                managedServices.refresh()
-            }.ensure(on: .main) {
-                executingCommand = false
-            }.catch(on: .main) { _ in
-                globalAlert.show(title: "Operation failed", body: "Could not change state of the service.")
-            }
+        promise.ensure(on: .main) {
+            executingCommand = false
+        }.catch(on: .main) { _ in
+            globalAlert.show(title: "Operation failed", body: "Could not change state of the service.")
         }
     }
 }
