@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import os
 
 protocol FileMonitorDelegate: AnyObject {
     func fileEvent(url: URL, event: DispatchSource.FileSystemEvent)
@@ -16,6 +17,7 @@ protocol FileMonitorDelegate: AnyObject {
 
 final class FileMonitor: FilesystemMonitor {
     let url: URL
+    let logger = Logger(subsystem: "nl.nanosector.Brewed.FileMonitor", category: "File monitoring")
     
     let fileHandle: FileHandle
     let source: DispatchSourceFileSystemObject
@@ -34,6 +36,7 @@ final class FileMonitor: FilesystemMonitor {
         
         source.setEventHandler {
             let event = self.source.data
+            self.logger.log(level: .info, "Change detected; FileSystemEvent \(event.rawValue), URL \(url.absoluteString)")
             self.delegate?.fileEvent(url: url, event: event)
         }
         
@@ -42,9 +45,16 @@ final class FileMonitor: FilesystemMonitor {
         }
         
         source.resume()
+        logger.debug("Init for \(url.absoluteString)")
+    }
+    
+    func stop() {
+        self.delegate = nil
+        source.cancel()
     }
     
     deinit {
-        source.cancel()
+        stop()
+        logger.debug("Deinit for \(self.url.absoluteString)")
     }
 }

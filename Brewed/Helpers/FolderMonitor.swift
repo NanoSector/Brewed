@@ -9,15 +9,19 @@
 //
 
 import Foundation
+import os
 
 protocol FolderMonitorDelegate: AnyObject {
     func folderEvent(url: URL, event: DispatchSource.FileSystemEvent, additions: [URL])
 }
 
-protocol FilesystemMonitor {}
+protocol FilesystemMonitor {
+    func stop()
+}
 
 final class FolderMonitor: FilesystemMonitor {
     let url: URL
+    let logger = Logger(subsystem: "nl.nanosector.Brewed.FolderMonitor", category: "Folder monitoring")
     
     let fileHandle: Int32
     let source: DispatchSourceFileSystemObject
@@ -38,12 +42,23 @@ final class FolderMonitor: FilesystemMonitor {
         
         source.setEventHandler {
             let event = self.source.data
+            
             let oldContents = contents
             contents = try! FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+            
+            let additions = contents.filter { !oldContents.contains($0) }
+            
+            if additions.count <= 0 {
+                self.logger.debug("Change detected but no additions found; skipping. FileSystemEvent \(event.rawValue), URL \(url.absoluteString)")
+                return
+            }
+            
+            self.logger.log(level: .info, "Change detected; FileSystemEvent \(event.rawValue), URL \(url.absoluteString)")
+            
             self.delegate?.folderEvent(
                 url: url,
                 event: event,
-                additions: contents.filter { !oldContents.contains($0) }
+                additions: additions
             )
         }
         
@@ -52,9 +67,16 @@ final class FolderMonitor: FilesystemMonitor {
         }
         
         source.resume()
+        logger.debug("Init for \(url.absoluteString)")
+    }
+    
+    func stop() {
+        delegate = nil
+        source.cancel()
     }
     
     deinit {
-        source.cancel()
+        stop()
+        logger.debug("Deinit for \(self.url.absoluteString)")
     }
 }
