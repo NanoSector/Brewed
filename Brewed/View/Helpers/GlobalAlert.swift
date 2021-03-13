@@ -11,10 +11,10 @@ class GlobalAlert: ObservableObject {
     @Published var shown = false
     var title = ""
     var body = ""
-    
+
     func show(title: String, body: String) {
         self.title = title
         self.body = body
-        self.shown = true
+        shown = true
     }
 }

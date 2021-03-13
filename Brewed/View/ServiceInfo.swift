@@ -21,7 +21,7 @@ struct ServiceInfo: View {
 
             Toggle("Runs at boot", isOn: $runsAtBoot).disabled(true)
             Toggle("Runs at login", isOn: $runsAtLogin).disabled(true)
-            
+
             if let plist = service.plist {
                 Text("Launch plist:")
                 Link(plist.path, destination: plist).font(.footnote)

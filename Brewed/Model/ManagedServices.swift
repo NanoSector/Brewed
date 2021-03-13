@@ -6,47 +6,44 @@
 //
 
 import Foundation
+import os
 
 class ManagedServices: ObservableObject, FileMonitorDelegate, FolderMonitorDelegate {
     @Published var services: [Service] = []
-    
+
     @Published var refreshing = false
-    
+
     private var monitors: [URL: FilesystemMonitor] = [:]
 
-    func update(service: Service) {
-        var services = self.services
-        
-        guard let index = services.firstIndex(where: { $0.id == service.id }) else {
-            services.append(service)
-            return
-        }
-        
-        services[index] = service
-        self.services = services
-    }
+    let logger = Logger(subsystem: "nl.nanosector.Brewed.ManagedServices", category: "Service management")
 
     func refresh() {
+        logger.debug("Refresh triggered.")
+
         refreshing = true
         ListServicesCommand().exec()
             .done { services in
+                self.monitors.forEach { $0.value.stop() }
                 self.monitors.removeAll()
-                
+
                 self.services = services
-                
+                self.logger.debug("Refresh done; got \(services.count) services")
+
                 AutostartDirectory.urls().forEach { url in
                     if let monitor = try? FolderMonitor(url: url) {
+                        self.logger.debug("Registering FolderMonitor for \(url.absoluteString)")
                         self.monitors[url] = monitor
                         monitor.delegate = self
                     }
                 }
-                
+
                 self.services.forEach { service in
                     guard let plist = service.plist else {
                         return
                     }
-                    
+
                     if let monitor = try? FileMonitor(url: plist) {
+                        self.logger.debug("Registering FileMonitor for \(plist.absoluteString)")
                         self.monitors[plist] = monitor
                         monitor.delegate = self
                     }
@@ -55,20 +52,23 @@ class ManagedServices: ObservableObject, FileMonitorDelegate, FolderMonitorDeleg
                 self.refreshing = false
             }.cauterize()
     }
-    
-    func fileEvent(url: URL, event: DispatchSource.FileSystemEvent) {
+
+    func fileEvent(url _: URL, event _: DispatchSource.FileSystemEvent) {
+        logger.debug("Got file event.")
         DispatchQueue.main.async {
             self.refresh()
         }
     }
-    
-    func folderEvent(url: URL, event: DispatchSource.FileSystemEvent, additions: [URL]) {
-        let wantedPlistNames = services.map { $0.plistName }
-        
+
+    func folderEvent(url _: URL, event _: DispatchSource.FileSystemEvent, additions: [URL]) {
+        let wantedPlistNames = services.map(\.plistName)
+        logger.debug("Got directory event.")
+
         if !additions.contains(where: { wantedPlistNames.contains($0.lastPathComponent) }) {
+            logger.debug("Dropping directory event; additions list does not contain a wanted file.")
             return
         }
-        
+
         DispatchQueue.main.async {
             self.refresh()
         }
