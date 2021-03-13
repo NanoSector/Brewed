@@ -10,32 +10,36 @@ import PromiseKit
 
 struct Shell {
     typealias processResult = (exitCode: Int32, stdout: String, stderr: String)
-    
+
     static func exec(_ command: String) -> Promise<processResult> {
         Promise { seal in
             let task = Process()
             let stdout = Pipe()
             let stderr = Pipe()
-        
+
             task.standardOutput = stdout
             task.standardError = stderr
             task.arguments = ["-c", command]
             task.launchPath = "/bin/zsh"
-            task.launch()
-            task.waitUntilExit()
-            
-            guard task.terminationStatus == 0 else {
-                throw ProcessError.NonZeroExitCode(stderr: stderr.toString())
+
+            DispatchQueue.global(qos: .background).async {
+                task.launch()
+                task.waitUntilExit()
+
+                guard task.terminationStatus == 0 else {
+                    seal.reject(ProcessError.NonZeroExitCode(stderr: stderr.toString()))
+                    return
+                }
+
+                seal.fulfill((task.terminationStatus, stdout.toString(), stderr.toString()))
             }
-        
-            seal.fulfill((task.terminationStatus, stdout.toString(), stderr.toString()))
         }
     }
 }
 
 protocol ShellCommandWrapper {
     associatedtype resultType
-    
+
     func exec() -> Promise<resultType>
 }
 
