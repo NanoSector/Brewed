@@ -15,6 +15,8 @@
 		CD6C478525FCF9E8004BA6DD /* RestartCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C478425FCF9E8004BA6DD /* RestartCommand.swift */; };
 		CD6C478825FD0522004BA6DD /* GlobalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C478725FD0522004BA6DD /* GlobalAlert.swift */; };
 		CD6C478B25FD0B4F004BA6DD /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */; };
+		CD6C479925FD50B6004BA6DD /* HomebrewVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C479825FD50B6004BA6DD /* HomebrewVersion.swift */; };
+		CD6C479C25FD5117004BA6DD /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C479B25FD5117004BA6DD /* Version.swift */; };
 		CD85838725FABE8E00E3974F /* BrewedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85838625FABE8E00E3974F /* BrewedApp.swift */; };
 		CD85838925FABE8E00E3974F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85838825FABE8E00E3974F /* ContentView.swift */; };
 		CD85838B25FABE9300E3974F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD85838A25FABE9300E3974F /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		CD6C478425FCF9E8004BA6DD /* RestartCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartCommand.swift; sourceTree = "<group>"; };
 		CD6C478725FD0522004BA6DD /* GlobalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAlert.swift; sourceTree = "<group>"; };
 		CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		CD6C479825FD50B6004BA6DD /* HomebrewVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewVersion.swift; sourceTree = "<group>"; };
+		CD6C479B25FD5117004BA6DD /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Version.swift; path = Brewed/Homebrew/Commands/Version.swift; sourceTree = SOURCE_ROOT; };
 		CD85838325FABE8E00E3974F /* Brewed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brewed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD85838625FABE8E00E3974F /* BrewedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewedApp.swift; sourceTree = "<group>"; };
 		CD85838825FABE8E00E3974F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				CD85839A25FABF1000E3974F /* ListCommand.swift */,
+				CD6C479B25FD5117004BA6DD /* Version.swift */,
 				CD6C477325FCEDFB004BA6DD /* RunCommand.swift */,
 				CD6C477E25FCF5E6004BA6DD /* StartCommand.swift */,
 				CD6C478425FCF9E8004BA6DD /* RestartCommand.swift */,
@@ -156,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				CDCCCE4625FBE6D500C3590A /* Service.swift */,
+				CD6C479825FD50B6004BA6DD /* HomebrewVersion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,8 +281,10 @@
 				CDA7929125FBFBB3006FFAB1 /* Regex.swift in Sources */,
 				CDCCCE4A25FBED2C00C3590A /* Collection.swift in Sources */,
 				CD6C478225FCF63E004BA6DD /* StopCommand.swift in Sources */,
+				CD6C479925FD50B6004BA6DD /* HomebrewVersion.swift in Sources */,
 				CDCCCE3F25FBE5E600C3590A /* Shell.swift in Sources */,
 				CD6C476E25FCE0B0004BA6DD /* ServiceRow.swift in Sources */,
+				CD6C479C25FD5117004BA6DD /* Version.swift in Sources */,
 				CD85839B25FABF1000E3974F /* ListCommand.swift in Sources */,
 				CD6C478B25FD0B4F004BA6DD /* FileMonitor.swift in Sources */,
 				CD6C477F25FCF5E6004BA6DD /* StartCommand.swift in Sources */,

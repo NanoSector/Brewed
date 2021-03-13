@@ -17,6 +17,8 @@ struct ContentView: View {
     @State private var bogus = false
     @State private var other = true
 
+    @State private var version = ""
+
     var body: some View {
         List {
             ForEach(managedServices.services) {
@@ -25,6 +27,16 @@ struct ContentView: View {
         }
         .onAppear(perform: {
             managedServices.refresh()
+
+            VersionCommand().exec().done { version in
+                self.version = version.version
+            }.catch { _ in
+                self.version = "N/A"
+                globalAlert.show(
+                    title: "Homebrew version check failed",
+                    body: "Could not gather Homebrew version information. Make sure it is installed properly."
+                )
+            }
         })
         .alert(isPresented: $globalAlert.shown) {
             Alert(
@@ -40,6 +52,7 @@ struct ContentView: View {
                 Image(systemName: "arrow.clockwise")
             }
         }
+        .navigationSubtitle("Homebrew \(version)")
         .environmentObject(managedServices)
         .environmentObject(globalAlert)
     }
