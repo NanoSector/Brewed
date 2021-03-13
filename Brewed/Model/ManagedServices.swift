@@ -7,11 +7,10 @@
 
 import Foundation
 
-class ManagedServices: ObservableObject, FileMonitorDelegate {
-    
+class ManagedServices: ObservableObject, FileMonitorDelegate, FolderMonitorDelegate {
     @Published var services: [Service] = []
     
-    private var monitors: [URL: FileMonitor] = [:]
+    private var monitors: [URL: FilesystemMonitor] = [:]
 
     func update(service: Service) {
         var services = self.services
@@ -31,6 +30,14 @@ class ManagedServices: ObservableObject, FileMonitorDelegate {
                 self.monitors.removeAll()
                 
                 self.services = services
+                
+                AutostartDirectory.urls().forEach { url in
+                    if let monitor = try? FolderMonitor(url: url) {
+                        self.monitors[url] = monitor
+                        monitor.delegate = self
+                    }
+                }
+                
                 self.services.forEach { service in
                     guard let plist = service.plist else {
                         return
@@ -45,6 +52,18 @@ class ManagedServices: ObservableObject, FileMonitorDelegate {
     }
     
     func fileEvent(url: URL, event: DispatchSource.FileSystemEvent) {
+        DispatchQueue.main.async {
+            self.refresh()
+        }
+    }
+    
+    func folderEvent(url: URL, event: DispatchSource.FileSystemEvent, additions: [URL]) {
+        let wantedPlistNames = services.map { $0.plistName }
+        
+        if !additions.contains(where: { wantedPlistNames.contains($0.lastPathComponent) }) {
+            return
+        }
+        
         DispatchQueue.main.async {
             self.refresh()
         }

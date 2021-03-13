@@ -14,7 +14,7 @@ protocol FileMonitorDelegate: AnyObject {
     func fileEvent(url: URL, event: DispatchSource.FileSystemEvent)
 }
 
-final class FileMonitor {
+final class FileMonitor: FilesystemMonitor {
     let url: URL
     
     let fileHandle: FileHandle

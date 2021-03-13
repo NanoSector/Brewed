@@ -20,6 +20,18 @@ struct AutostartDirectory {
         
         return regex?.matches(url?.absoluteString ?? "") ?? false
     }
+    
+    static func urls() -> [URL] {
+        var urls = [
+            URL(fileURLWithPath: AutostartDirectory.global, isDirectory: true)
+        ]
+        
+        if let local = try? FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            urls.append(local.appendingPathComponent("LaunchAgents"))
+        }
+            
+        return urls
+    }
 }
 
 extension Service {
@@ -29,5 +41,9 @@ extension Service {
 
     var startsAtLogin: Bool {
         AutostartDirectory.isLocalPlist(plist)
+    }
+    
+    var plistName: String {
+        "homebrew.mxcl.\(self.id).plist"
     }
 }
