@@ -15,6 +15,7 @@
 		CD6C478525FCF9E8004BA6DD /* RestartCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C478425FCF9E8004BA6DD /* RestartCommand.swift */; };
 		CD6C478825FD0522004BA6DD /* GlobalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C478725FD0522004BA6DD /* GlobalAlert.swift */; };
 		CD6C478B25FD0B4F004BA6DD /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */; };
+		CD6C479525FD4721004BA6DD /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C479425FD4721004BA6DD /* FolderMonitor.swift */; };
 		CD85838725FABE8E00E3974F /* BrewedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85838625FABE8E00E3974F /* BrewedApp.swift */; };
 		CD85838925FABE8E00E3974F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85838825FABE8E00E3974F /* ContentView.swift */; };
 		CD85838B25FABE9300E3974F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD85838A25FABE9300E3974F /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		CD6C478425FCF9E8004BA6DD /* RestartCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartCommand.swift; sourceTree = "<group>"; };
 		CD6C478725FD0522004BA6DD /* GlobalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAlert.swift; sourceTree = "<group>"; };
 		CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		CD6C479425FD4721004BA6DD /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
 		CD85838325FABE8E00E3974F /* Brewed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brewed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD85838625FABE8E00E3974F /* BrewedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewedApp.swift; sourceTree = "<group>"; };
 		CD85838825FABE8E00E3974F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				CDCCCE4925FBED2C00C3590A /* Collection.swift */,
 				CDA7929025FBFBB3006FFAB1 /* Regex.swift */,
 				CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */,
+				CD6C479425FD4721004BA6DD /* FolderMonitor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				CDA7928D25FBFA58006FFAB1 /* AutostartService.swift in Sources */,
 				CD6C478525FCF9E8004BA6DD /* RestartCommand.swift in Sources */,
 				CD85838725FABE8E00E3974F /* BrewedApp.swift in Sources */,
+				CD6C479525FD4721004BA6DD /* FolderMonitor.swift in Sources */,
 				CDA7928725FBEFC9006FFAB1 /* ManagedServices.swift in Sources */,
 				CD6C477125FCE2AC004BA6DD /* ServiceInfo.swift in Sources */,
 				CDCCCE4725FBE6D500C3590A /* Service.swift in Sources */,

@@ -11,10 +11,10 @@
 import Foundation
 
 protocol FileMonitorDelegate: AnyObject {
-    func deleted(url: URL, event: DispatchSource.FileSystemEvent)
+    func fileEvent(url: URL, event: DispatchSource.FileSystemEvent)
 }
 
-final class FileMonitor {
+final class FileMonitor: FilesystemMonitor {
     let url: URL
     
     let fileHandle: FileHandle
@@ -28,13 +28,13 @@ final class FileMonitor {
         
         source = DispatchSource.makeFileSystemObjectSource(
             fileDescriptor: fileHandle.fileDescriptor,
-            eventMask: .delete,
+            eventMask: [.write, .delete],
             queue: DispatchQueue.main
         )
         
         source.setEventHandler {
             let event = self.source.data
-            self.delegate?.deleted(url: url, event: event)
+            self.delegate?.fileEvent(url: url, event: event)
         }
         
         source.setCancelHandler {
