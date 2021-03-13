@@ -10,10 +10,14 @@ import PromiseKit
 
 struct StopServiceCommand: ShellCommandWrapper {
     typealias resultType = Void
-    
+
     let service: Service
-    
+
     func exec() -> Promise<resultType> {
-        Shell.exec("/usr/local/bin/brew services stop \(service.id)").asVoid()
+        guard NSRegularExpression.alphanumeric().matches(service.id) else {
+            return Promise(error: ProcessError.IllegalArguments)
+        }
+
+        return Shell.exec("/usr/local/bin/brew services stop \(service.id)").asVoid()
     }
 }

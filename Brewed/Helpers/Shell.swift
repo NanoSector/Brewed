@@ -48,4 +48,5 @@ extension Pipe {
 
 enum ProcessError: Error {
     case NonZeroExitCode(stderr: String)
+    case IllegalArguments
 }

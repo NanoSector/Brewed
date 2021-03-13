@@ -14,6 +14,10 @@ struct RestartServiceCommand: ShellCommandWrapper {
     let service: Service
 
     func exec() -> Promise<resultType> {
-        Shell.exec("/usr/local/bin/brew services restart \(service.id)").asVoid()
+        guard NSRegularExpression.alphanumeric().matches(service.id) else {
+            return Promise(error: ProcessError.IllegalArguments)
+        }
+        
+        return Shell.exec("/usr/local/bin/brew services restart \(service.id)").asVoid()
     }
 }
