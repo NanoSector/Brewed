@@ -26,10 +26,9 @@ struct ContentView: View {
             }
         }
         .onAppear(perform: {
-            managedServices.refresh()
-
             VersionCommand().exec().done { version in
                 self.version = version.version
+                managedServices.refresh()
             }.catch { _ in
                 self.version = "N/A"
                 globalAlert.show(

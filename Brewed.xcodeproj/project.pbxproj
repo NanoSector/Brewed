@@ -219,10 +219,10 @@
 			children = (
 				CD6C477925FCF34D004BA6DD /* Helpers */,
 				CD85838825FABE8E00E3974F /* ContentView.swift */,
-				CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */,
-				CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */,
 				CD525CD725FE359300785326 /* LogView.swift */,
+				CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */,
 				CD525CE425FE43C000785326 /* ServiceLogs.swift */,
+				CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,13 +231,13 @@
 			isa = PBXGroup;
 			children = (
 				CDCCCE4925FBED2C00C3590A /* Collection.swift */,
+				CD525CDE25FE3DB900785326 /* DateFormatter.swift */,
 				CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */,
 				CD6C479425FD4721004BA6DD /* FolderMonitor.swift */,
 				CD525CCD25FE2E0300785326 /* Plist.swift */,
 				CDA7929025FBFBB3006FFAB1 /* Regex.swift */,
 				CDCCCE3E25FBE5E600C3590A /* Shell.swift */,
 				CDB92FDC25FD6531008FCFC9 /* TimeLogger.swift */,
-				CD525CDE25FE3DB900785326 /* DateFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
