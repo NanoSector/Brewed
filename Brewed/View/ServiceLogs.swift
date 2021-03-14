@@ -20,7 +20,7 @@ struct ServiceLogs: View {
                             Button(action: {
                                 NSWorkspace.shared.activateFileViewerSelecting([url])
                             }) { Text("Show in Finder") }
-                        }
+                        }.disabled(!FileManager.default.fileExists(atPath: url.path))
                     }
                 } else {
                     Text("No log files found!").font(.callout)
