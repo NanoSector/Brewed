@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD525CCA25FE2D9100785326 /* LogsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CC925FE2D9100785326 /* LogsService.swift */; };
+		CD525CCE25FE2E0300785326 /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CCD25FE2E0300785326 /* Plist.swift */; };
+		CD525CD225FE2E5B00785326 /* LogMappings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD525CD125FE2E5B00785326 /* LogMappings.plist */; };
+		CD525CD525FE353D00785326 /* LogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CD425FE353D00785326 /* LogWindowController.swift */; };
+		CD525CD825FE359300785326 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CD725FE359300785326 /* LogView.swift */; };
+		CD525CDB25FE37BA00785326 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CDA25FE37BA00785326 /* Log.swift */; };
+		CD525CDF25FE3DB900785326 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CDE25FE3DB900785326 /* DateFormatter.swift */; };
+		CD525CE525FE43C000785326 /* ServiceLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CE425FE43C000785326 /* ServiceLogs.swift */; };
 		CD6C476E25FCE0B0004BA6DD /* ServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */; };
 		CD6C477125FCE2AC004BA6DD /* ServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */; };
 		CD6C477425FCEDFB004BA6DD /* RunCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C477325FCEDFB004BA6DD /* RunCommand.swift */; };
@@ -32,6 +40,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD525CC925FE2D9100785326 /* LogsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsService.swift; sourceTree = "<group>"; };
+		CD525CCD25FE2E0300785326 /* Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
+		CD525CD125FE2E5B00785326 /* LogMappings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LogMappings.plist; sourceTree = "<group>"; };
+		CD525CD425FE353D00785326 /* LogWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWindowController.swift; sourceTree = "<group>"; };
+		CD525CD725FE359300785326 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		CD525CDA25FE37BA00785326 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		CD525CDE25FE3DB900785326 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		CD525CE425FE43C000785326 /* ServiceLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLogs.swift; sourceTree = "<group>"; };
 		CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRow.swift; sourceTree = "<group>"; };
 		CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfo.swift; sourceTree = "<group>"; };
 		CD6C477325FCEDFB004BA6DD /* RunCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCommand.swift; sourceTree = "<group>"; };
@@ -70,6 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD525CC825FE2D7D00785326 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CD525CC925FE2D9100785326 /* LogsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CD525CD025FE2E4400785326 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD525CD125FE2E5B00785326 /* LogMappings.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CD6C477625FCEE00004BA6DD /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				CD6C478725FD0522004BA6DD /* GlobalAlert.swift */,
+				CD525CD425FE353D00785326 /* LogWindowController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -112,6 +145,8 @@
 				CDA7928525FBEFBC006FFAB1 /* Model */,
 				CDCCCE3D25FBE5D800C3590A /* Helpers */,
 				CD85839725FABEB100E3974F /* Homebrew */,
+				CD525CD025FE2E4400785326 /* Resources */,
+				CD525CC825FE2D7D00785326 /* Services */,
 				CDCCCE3C25FBE5C700C3590A /* View */,
 				CD85839025FABE9300E3974F /* Brewed.entitlements */,
 				CD85838F25FABE9300E3974F /* Info.plist */,
@@ -151,6 +186,7 @@
 		CDA7928525FBEFBC006FFAB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD525CDA25FE37BA00785326 /* Log.swift */,
 				CDA7928625FBEFC9006FFAB1 /* ManagedServices.swift */,
 			);
 			path = Model;
@@ -179,6 +215,8 @@
 				CD85838825FABE8E00E3974F /* ContentView.swift */,
 				CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */,
 				CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */,
+				CD525CD725FE359300785326 /* LogView.swift */,
+				CD525CE425FE43C000785326 /* ServiceLogs.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,12 +224,14 @@
 		CDCCCE3D25FBE5D800C3590A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CDCCCE3E25FBE5E600C3590A /* Shell.swift */,
 				CDCCCE4925FBED2C00C3590A /* Collection.swift */,
-				CDA7929025FBFBB3006FFAB1 /* Regex.swift */,
 				CD6C478A25FD0B4F004BA6DD /* FileMonitor.swift */,
 				CD6C479425FD4721004BA6DD /* FolderMonitor.swift */,
+				CD525CCD25FE2E0300785326 /* Plist.swift */,
+				CDA7929025FBFBB3006FFAB1 /* Regex.swift */,
+				CDCCCE3E25FBE5E600C3590A /* Shell.swift */,
 				CDB92FDC25FD6531008FCFC9 /* TimeLogger.swift */,
+				CD525CDE25FE3DB900785326 /* DateFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -259,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD525CD225FE2E5B00785326 /* LogMappings.plist in Resources */,
 				CD85838E25FABE9300E3974F /* Preview Assets.xcassets in Resources */,
 				CD85838B25FABE9300E3974F /* Assets.xcassets in Resources */,
 			);
@@ -271,22 +312,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD525CCE25FE2E0300785326 /* Plist.swift in Sources */,
 				CD85838925FABE8E00E3974F /* ContentView.swift in Sources */,
 				CDA7928D25FBFA58006FFAB1 /* AutostartService.swift in Sources */,
 				CD6C478525FCF9E8004BA6DD /* RestartCommand.swift in Sources */,
 				CD85838725FABE8E00E3974F /* BrewedApp.swift in Sources */,
 				CD6C479525FD4721004BA6DD /* FolderMonitor.swift in Sources */,
 				CDA7928725FBEFC9006FFAB1 /* ManagedServices.swift in Sources */,
+				CD525CCA25FE2D9100785326 /* LogsService.swift in Sources */,
 				CD6C477125FCE2AC004BA6DD /* ServiceInfo.swift in Sources */,
 				CDB92FDD25FD6531008FCFC9 /* TimeLogger.swift in Sources */,
 				CDCCCE4725FBE6D500C3590A /* Service.swift in Sources */,
+				CD525CE525FE43C000785326 /* ServiceLogs.swift in Sources */,
 				CDA7929125FBFBB3006FFAB1 /* Regex.swift in Sources */,
 				CDCCCE4A25FBED2C00C3590A /* Collection.swift in Sources */,
 				CD6C478225FCF63E004BA6DD /* StopCommand.swift in Sources */,
+				CD525CDF25FE3DB900785326 /* DateFormatter.swift in Sources */,
+				CD525CDB25FE37BA00785326 /* Log.swift in Sources */,
 				CDCCCE3F25FBE5E600C3590A /* Shell.swift in Sources */,
+				CD525CD825FE359300785326 /* LogView.swift in Sources */,
 				CD6C476E25FCE0B0004BA6DD /* ServiceRow.swift in Sources */,
 				CD85839B25FABF1000E3974F /* ListCommand.swift in Sources */,
 				CD6C478B25FD0B4F004BA6DD /* FileMonitor.swift in Sources */,
+				CD525CD525FE353D00785326 /* LogWindowController.swift in Sources */,
 				CD6C477F25FCF5E6004BA6DD /* StartCommand.swift in Sources */,
 				CD6C478825FD0522004BA6DD /* GlobalAlert.swift in Sources */,
 				CD6C477425FCEDFB004BA6DD /* RunCommand.swift in Sources */,

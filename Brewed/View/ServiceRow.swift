@@ -40,6 +40,19 @@ struct ServiceRow: View {
 
             VStack {
                 HStack {
+                    if service.logPaths() != nil {
+                        Button(action: {
+                            let detailView = ServiceLogs(service: self.service)
+
+                            let controller = LogWindowController(rootView: detailView)
+                            controller.window?.title = "Logs for \(service.id)"
+                            controller.showWindow(nil)
+                        }) {
+                            Image(systemName: "doc.badge.gearshape")
+                            Text("Logs")
+                        }
+                    }
+
                     if service.status == .stopped {
                         Button(action: run) {
                             Image(systemName: "play")

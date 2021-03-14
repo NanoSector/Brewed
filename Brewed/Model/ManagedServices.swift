@@ -53,8 +53,14 @@ class ManagedServices: ObservableObject, FileMonitorDelegate, FolderMonitorDeleg
             }.cauterize()
     }
 
-    func fileEvent(url _: URL, event _: DispatchSource.FileSystemEvent) {
+    func fileEvent(url _: URL, event: DispatchSource.FileSystemEvent) {
         logger.debug("Got file event.")
+
+        guard event == .delete else {
+            logger.debug("Dropping file event; event type does not match wanted .delete")
+            return
+        }
+
         DispatchQueue.main.async {
             self.refresh()
         }
