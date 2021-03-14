@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import os
 import PromiseKit
 
 struct Shell {
     typealias processResult = (exitCode: Int32, stdout: String, stderr: String)
+
+    static let logger = Logger(subsystem: "nl.nanosector.Brewed.Shell", category: "Shell")
 
     static func exec(_ command: String) -> Promise<processResult> {
         Promise { seal in
@@ -23,14 +26,21 @@ struct Shell {
             task.launchPath = "/bin/zsh"
 
             DispatchQueue.global(qos: .background).async {
-                task.launch()
-                task.waitUntilExit()
+                TimeLogger.logTime(logger: self.logger) {
+                    task.launch()
+                    logger.debug("Task with PID \(task.processIdentifier) started: \(task.launchPath!) \(task.arguments!.joined(separator: " "))")
+
+                    task.waitUntilExit()
+                    logger.debug("Task with PID \(task.processIdentifier) exited with code \(task.terminationStatus)")
+                }
 
                 guard task.terminationStatus == 0 else {
+                    logger.debug("Task failed with non-zero exit code; rejecting promise")
                     seal.reject(ProcessError.NonZeroExitCode(stderr: stderr.toString()))
                     return
                 }
 
+                logger.debug("Task succeeded; fulfilling promise")
                 seal.fulfill((task.terminationStatus, stdout.toString(), stderr.toString()))
             }
         }
@@ -45,7 +55,7 @@ protocol ShellCommandWrapper {
 
 extension Pipe {
     func toString() -> String {
-        let data = self.fileHandleForReading.readDataToEndOfFile()
+        let data = fileHandleForReading.readDataToEndOfFile()
         return String(data: data, encoding: .utf8)!
     }
 }

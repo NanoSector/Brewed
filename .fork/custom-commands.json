@@ -1,0 +1,27 @@
+[
+  {
+    "action" : {
+      "waitForExit" : true,
+      "path" : "\/usr\/local\/bin\/swiftformat",
+      "type" : "process",
+      "args" : "$filepath --swiftversion 5.3",
+      "showOutput" : true
+    },
+    "referenceTargets" : [
+
+    ],
+    "target" : "file",
+    "name" : "SwiftFormat"
+  },
+  {
+    "action" : {
+      "waitForExit" : true,
+      "showOutput" : true,
+      "type" : "process",
+      "args" : "$path --swiftversion 5.3",
+      "path" : "\/usr\/local\/bin\/swiftformat"
+    },
+    "name" : "SwiftFormat Repo",
+    "target" : "repository"
+  }
+]

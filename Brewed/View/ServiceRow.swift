@@ -11,14 +11,14 @@ import SwiftUI
 struct ServiceRow: View {
     @EnvironmentObject var managedServices: ManagedServices
     @EnvironmentObject var globalAlert: GlobalAlert
-    
+
     let service: Service
-    
+
     @State private var showingPopover = false
     @State private var executingCommand = false
-    
+
     @State private var showingStartHelpPopover = false
-    
+
     var body: some View {
         HStack {
             Button(action: { showingPopover = true }) {
@@ -26,20 +26,33 @@ struct ServiceRow: View {
             }.popover(isPresented: $showingPopover, arrowEdge: .leading) {
                 ServiceInfo(service: service)
             }
-            
+
             VStack(alignment: .leading) {
                 Text(service.id)
-                
+
                 if service.user != nil {
                     Text("User: \(service.user!)")
                         .foregroundColor(.secondary)
                 }
             }
-            
+
             Spacer()
-            
+
             VStack {
                 HStack {
+                    if service.logPaths() != nil {
+                        Button(action: {
+                            let detailView = ServiceLogs(service: self.service)
+
+                            let controller = LogWindowController(rootView: detailView)
+                            controller.window?.title = "Logs for \(service.id)"
+                            controller.showWindow(nil)
+                        }) {
+                            Image(systemName: "doc.badge.gearshape")
+                            Text("Logs")
+                        }
+                    }
+
                     if service.status == .stopped {
                         Button(action: run) {
                             Image(systemName: "play")
@@ -54,7 +67,7 @@ struct ServiceRow: View {
                             Text("This will run the service now and when logging in as the current user.").padding()
                         }
                     }
-                    
+
                     if service.status == .started {
                         Button(action: stop) {
                             Image(systemName: "stop.fill")
@@ -67,37 +80,32 @@ struct ServiceRow: View {
                     }
                 }
             }
-        }.disabled(executingCommand)
+        }.disabled(executingCommand || managedServices.refreshing)
     }
-    
+
     func run() {
         handleRefresh(service.run())
     }
-    
+
     func start() {
         handleRefresh(service.start())
     }
-    
+
     func stop() {
         handleRefresh(service.stop())
     }
-    
+
     func restart() {
         handleRefresh(service.restart())
     }
-    
-    func handleRefresh(_ promise: Promise<Service>) {
+
+    func handleRefresh(_ promise: Promise<Void>) {
         executingCommand = true
-        
-        DispatchQueue.global(qos: .background).async {
-            promise.done(on: .main) { service in
-                managedServices.update(service: service)
-                managedServices.refresh()
-            }.ensure(on: .main) {
-                executingCommand = false
-            }.catch(on: .main) { _ in
-                globalAlert.show(title: "Operation failed", body: "Could not change state of the service.")
-            }
+
+        promise.ensure(on: .main) {
+            executingCommand = false
+        }.catch(on: .main) { _ in
+            globalAlert.show(title: "Operation failed", body: "Could not change state of the service.")
         }
     }
 }

@@ -9,11 +9,11 @@ import Foundation
 
 extension NSRegularExpression {
     func matches(_ text: String) -> Bool {
-        return self.firstMatch(in: text, range: text.range()) != nil
+        firstMatch(in: text, range: text.range()) != nil
     }
 
     func matches(in text: String) -> [String] {
-        let results = self.matches(
+        let results = matches(
             in: text,
             range: text.range()
         )
@@ -21,7 +21,7 @@ extension NSRegularExpression {
             String(text[Range($0.range, in: text)!])
         }
     }
-    
+
     static func alphanumeric() -> NSRegularExpression {
         try! NSRegularExpression(pattern: "[a-zA-Z0-9]+", options: [])
     }
@@ -29,6 +29,6 @@ extension NSRegularExpression {
 
 extension String {
     func range() -> NSRange {
-        return NSRange(self.startIndex..., in: self)
+        NSRange(startIndex..., in: self)
     }
 }
