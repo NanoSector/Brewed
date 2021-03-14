@@ -30,7 +30,9 @@ struct ContentView: View {
             Alert(
                 title: Text(globalAlert.title),
                 message: Text(globalAlert.body),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text("OK")) {
+                    globalAlert.dismiss()
+                }
             )
         }
         .toolbar {
