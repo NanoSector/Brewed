@@ -17,4 +17,8 @@ class GlobalAlert: ObservableObject {
         self.body = body
         shown = true
     }
+    
+    func dismiss() {
+        shown = false
+    }
 }
