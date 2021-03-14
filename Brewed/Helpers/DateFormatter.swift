@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 extension Date {
-    func format() -> String {
+    func format(date: DateFormatter.Style, time: DateFormatter.Style) -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
+        formatter.dateStyle = date
+        formatter.timeStyle = time
 
         return formatter.string(from: self)
     }

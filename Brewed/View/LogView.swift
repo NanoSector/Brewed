@@ -15,7 +15,7 @@ struct LogView: View {
     var body: some View {
         VStack {
             Toggle("Watch file changes", isOn: $scrollToBottom).padding(.top)
-            Text("Last updated \(watcher.lastChanged.format())").font(.subheadline)
+            Text("Last updated \(watcher.lastChanged.format(date: .short, time: .medium))").font(.subheadline)
 
             ScrollView {
                 ScrollViewReader { scrollView in
