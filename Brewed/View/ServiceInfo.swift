@@ -17,14 +17,22 @@ struct ServiceInfo: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(service.id).bold()
+            Text(service.id).font(.title)
 
             Toggle("Runs at boot", isOn: $runsAtBoot).disabled(true)
             Toggle("Runs at login", isOn: $runsAtLogin).disabled(true)
 
             if let plist = service.plist {
-                Text("Launch plist:")
-                Link(plist.path, destination: plist).font(.footnote)
+                Text("Launch plist").font(.headline)
+                Link(plist.path, destination: plist)
+            }
+
+            if let logs = service.logPaths() {
+                Text("Log files").font(.headline)
+
+                ForEach(logs, id: \.self) { log in
+                    Link(log.path, destination: log)
+                }
             }
         }.onAppear {
             runsAtBoot = service.startsAtBoot
