@@ -17,14 +17,38 @@ struct ContentView: View {
     @State private var bogus = false
     @State private var other = true
 
+    @State private var version = ""
+
     var body: some View {
-        List {
-            ForEach(managedServices.services) {
-                ServiceRow(service: $0).padding(.bottom)
+        VStack {
+            if managedServices.services.count <= 0 {
+                VStack {
+                    if managedServices.refreshing {
+                        Text("Refreshing...").font(.title)
+                    } else {
+                        Text("No services found").font(.title)
+                        Text("Check whether Homebrew is set up properly.")
+                    }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                List {
+                    ForEach(managedServices.services) {
+                        ServiceRow(service: $0).padding(.bottom)
+                    }
+                }
             }
         }
         .onAppear(perform: {
-            managedServices.refresh()
+            VersionCommand().exec().done { version in
+                self.version = version.version
+                managedServices.refresh()
+            }.catch { _ in
+                self.version = "N/A"
+                globalAlert.show(
+                    title: "Homebrew version check failed",
+                    body: "Could not gather Homebrew version information. Make sure it is installed properly."
+                )
+            }
         })
         .alert(isPresented: $globalAlert.shown) {
             Alert(
@@ -46,6 +70,7 @@ struct ContentView: View {
                 Image(systemName: "arrow.clockwise")
             }
         }
+        .navigationSubtitle("Homebrew \(version)")
         .environmentObject(managedServices)
         .environmentObject(globalAlert)
     }
