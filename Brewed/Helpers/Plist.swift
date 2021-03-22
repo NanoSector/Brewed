@@ -8,7 +8,7 @@
 import Foundation
 
 struct Plist {
-    static func deserialise<K: Hashable, V: Any>(url: URL) throws -> [K: V]? {
+    static func toMap<K: Hashable, V: Any>(url: URL) throws -> [K: V]? {
         let infoPlistData = try Data(contentsOf: url)
 
         guard let dict = try PropertyListSerialization.propertyList(

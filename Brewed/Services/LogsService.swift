@@ -18,7 +18,7 @@ struct LogsService {
 
     init() {
         guard let mappingsPath = Bundle.main.url(forResource: "LogMappings", withExtension: "plist"),
-              let plistContents: [String: [String]] = try? Plist.deserialise(url: mappingsPath)
+              let plistContents: [String: [String]] = try? Plist.toMap(url: mappingsPath)
         else {
             logger.warning("Could not read mappings Plist; proceeding without mappings. No logs will be available.")
             logPaths = [:]
