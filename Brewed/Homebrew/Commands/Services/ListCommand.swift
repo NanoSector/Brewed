@@ -27,7 +27,7 @@ struct ListServicesCommand: ShellCommandWrapper {
                     let name = parts[0]
                     let status = parts[1]
                     let user = parts[safe: 2]
-                    let plist = parts[safe: 3]
+                    let plist = parts[safe: 3] ?? Plist.path(for: name)
 
                     result.append(Service(
                         id: name,

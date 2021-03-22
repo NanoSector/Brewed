@@ -22,4 +22,14 @@ struct Plist {
 
         return dict
     }
+
+    static func path(for service: String) -> String? {
+        let path = "/usr/local/opt/\(service)/homebrew.mxcl.\(service).plist"
+        
+        if FileManager.default.fileExists(atPath: path) {
+            return path
+        }
+
+        return nil
+    }
 }
