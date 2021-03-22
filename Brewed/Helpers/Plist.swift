@@ -23,6 +23,15 @@ struct Plist {
         return dict
     }
 
+    static func deserialize<T: Decodable>(url: URL) throws -> T {
+        let infoPlistData = try Data(contentsOf: url)
+
+        return try PropertyListDecoder().decode(
+            T.self,
+            from: infoPlistData
+        )
+    }
+
     static func path(for service: String) -> String? {
         let path = "/usr/local/opt/\(service)/homebrew.mxcl.\(service).plist"
         
@@ -31,5 +40,15 @@ struct Plist {
         }
 
         return nil
+    }
+}
+
+extension Service {
+    func deserializePlist() -> LaunchdPlistRepresentative? {
+        guard let plist = self.plist else {
+            return nil
+        }
+
+        return try? Plist.deserialize(url: plist)
     }
 }
