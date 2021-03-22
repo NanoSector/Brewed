@@ -17,8 +17,6 @@ struct ServiceRow: View {
     @State private var showingPopover = false
     @State private var executingCommand = false
 
-    @State private var showingStartHelpPopover = false
-
     var body: some View {
         HStack {
             Button(action: { showingPopover = true }) {
@@ -61,11 +59,7 @@ struct ServiceRow: View {
                         Button(action: start) {
                             Image(systemName: "play.fill")
                             Text("Start")
-                        }.onHover { hovering in
-                            showingStartHelpPopover = hovering
-                        }.popover(isPresented: $showingStartHelpPopover, arrowEdge: .bottom) {
-                            Text("This will run the service now and when logging in as the current user.").padding()
-                        }
+                        }.help("This will run the service now and when logging in as the current user.")
                     }
 
                     if service.status == .started {
