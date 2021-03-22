@@ -34,6 +34,7 @@
 		CDA7928725FBEFC9006FFAB1 /* ManagedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA7928625FBEFC9006FFAB1 /* ManagedServices.swift */; };
 		CDA7928D25FBFA58006FFAB1 /* AutostartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA7928C25FBFA58006FFAB1 /* AutostartService.swift */; };
 		CDA7929125FBFBB3006FFAB1 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA7929025FBFBB3006FFAB1 /* Regex.swift */; };
+		CDB9291C2609061F00CAB3AA /* LaunchdPlistRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB9291B2609061F00CAB3AA /* LaunchdPlistRepresentative.swift */; };
 		CDB92FDD25FD6531008FCFC9 /* TimeLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB92FDC25FD6531008FCFC9 /* TimeLogger.swift */; };
 		CDCCCE3F25FBE5E600C3590A /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCCCE3E25FBE5E600C3590A /* Shell.swift */; };
 		CDCCCE4425FBE6A400C3590A /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDCCCE4325FBE6A400C3590A /* PromiseKit */; };
@@ -72,6 +73,7 @@
 		CDA7928625FBEFC9006FFAB1 /* ManagedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedServices.swift; sourceTree = "<group>"; };
 		CDA7928C25FBFA58006FFAB1 /* AutostartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutostartService.swift; sourceTree = "<group>"; };
 		CDA7929025FBFBB3006FFAB1 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		CDB9291B2609061F00CAB3AA /* LaunchdPlistRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchdPlistRepresentative.swift; sourceTree = "<group>"; };
 		CDB92FDC25FD6531008FCFC9 /* TimeLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLogger.swift; sourceTree = "<group>"; };
 		CDCCCE3E25FBE5E600C3590A /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		CDCCCE4625FBE6D500C3590A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				CD525CDA25FE37BA00785326 /* Log.swift */,
 				CDA7928625FBEFC9006FFAB1 /* ManagedServices.swift */,
+				CDB9291B2609061F00CAB3AA /* LaunchdPlistRepresentative.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				CD6C477F25FCF5E6004BA6DD /* StartCommand.swift in Sources */,
 				CD6C478825FD0522004BA6DD /* GlobalAlert.swift in Sources */,
 				CD6C477425FCEDFB004BA6DD /* RunCommand.swift in Sources */,
+				CDB9291C2609061F00CAB3AA /* LaunchdPlistRepresentative.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
