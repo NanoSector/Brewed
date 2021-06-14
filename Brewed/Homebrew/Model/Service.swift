@@ -34,6 +34,7 @@ struct Service: Identifiable {
 enum ServiceStatus: String {
     case stopped
     case started
+    case unknown
 }
 
 enum ServiceError: Error {
