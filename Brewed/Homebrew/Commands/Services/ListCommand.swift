@@ -33,7 +33,7 @@ struct ListServicesCommand: ShellCommandWrapper {
                         id: name,
                         status: ServiceStatus(rawValue: status)!,
                         user: user,
-                        plist: (plist != nil) ? URL(fileURLWithPath: plist!, isDirectory: false) : nil
+                        plist: (plist != nil) ? URL(fileURLWithPath: NSString(string: plist!).expandingTildeInPath, isDirectory: false) : nil
                     ))
                 }
 
