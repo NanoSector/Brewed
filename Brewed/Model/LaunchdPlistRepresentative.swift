@@ -9,11 +9,11 @@ import Foundation
 
 struct LaunchdPlistRepresentative: Codable {
     let Label: String
-    
+
     let ProgramArguments: [String]
-    
+
     let WorkingDirectory: String
-    
+
     let StandardErrorPath: String?
     let StandardOutputPath: String?
 }

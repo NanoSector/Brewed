@@ -45,7 +45,7 @@ struct LogView: View {
     }
 
     func scroll(view: ScrollViewProxy) {
-        if scrollToBottom && watcher.contentsPerLine.count > 0 {
+        if scrollToBottom, watcher.contentsPerLine.count > 0 {
             view.scrollTo(watcher.contentsPerLine[watcher.contentsPerLine.count - 1])
         }
     }

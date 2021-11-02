@@ -12,7 +12,7 @@ struct ContentView: View {
     @StateObject var globalAlert = GlobalAlert()
 
     @State private var showingErrorAlert = false
-    var lastError: Error? = nil
+    var lastError: Error?
 
     @State private var bogus = false
     @State private var other = true

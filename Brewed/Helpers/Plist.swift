@@ -33,8 +33,9 @@ struct Plist {
     }
 
     static func path(for service: String) -> String? {
-        let path = "/usr/local/opt/\(service)/homebrew.mxcl.\(service).plist"
-        
+        let base = PathService.GetHomebrewBasePath()
+        let path = "\(base)/opt/\(service)/homebrew.mxcl.\(service).plist"
+
         if FileManager.default.fileExists(atPath: path) {
             return path
         }
@@ -45,7 +46,7 @@ struct Plist {
 
 extension Service {
     func deserializePlist() -> LaunchdPlistRepresentative? {
-        guard let plist = self.plist else {
+        guard let plist = plist else {
             return nil
         }
 

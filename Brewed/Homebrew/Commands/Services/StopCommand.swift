@@ -18,6 +18,6 @@ struct StopServiceCommand: ShellCommandWrapper {
             return Promise(error: ProcessError.IllegalArguments)
         }
 
-        return Shell.exec("/usr/local/bin/brew services stop \(service.id)").asVoid()
+        return Shell.exec(brew: "services stop \(service.id)").asVoid()
     }
 }
