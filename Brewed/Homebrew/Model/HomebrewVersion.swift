@@ -9,6 +9,6 @@ import Foundation
 
 struct HomebrewVersion {
     let version: String
-    
+
     var taps: [String] = []
 }

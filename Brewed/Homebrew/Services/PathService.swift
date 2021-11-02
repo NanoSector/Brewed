@@ -17,14 +17,14 @@ struct PathService {
 
         return String(cString: &sysInfo.machine.0, encoding: .utf8)
     }
-    
+
     static func GetHomebrewBasePath() -> String {
         let machineHardware = GetMachineHardwareName()
-        
-        if (machineHardware == nil || machineHardware == "x86_64") {
+
+        if machineHardware == nil || machineHardware == "x86_64" {
             return "/usr/local"
         }
-        
+
         return "/opt/homebrew"
     }
 }

@@ -49,8 +49,8 @@ struct LogsService {
 extension Service {
     func logPaths() -> [URL]? {
         var servicePaths = LogsService.shared.paths(for: id) ?? []
-        
-        if let launchd = self.deserializePlist() {
+
+        if let launchd = deserializePlist() {
             if let stderr = launchd.StandardErrorPath {
                 servicePaths.append(URL(fileURLWithPath: stderr))
             }
@@ -58,11 +58,11 @@ extension Service {
                 servicePaths.append(URL(fileURLWithPath: stdout))
             }
         }
-        
+
         guard servicePaths.count > 0 else {
             return nil
         }
-        
+
         return servicePaths
     }
 }
