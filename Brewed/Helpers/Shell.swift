@@ -45,6 +45,12 @@ struct Shell {
             }
         }
     }
+    
+    static func exec(brew command: String) -> Promise<processResult> {
+        let brew = "\(PathService.GetHomebrewBasePath())/bin/brew"
+        
+        return exec("\(brew) \(command)")
+    }
 }
 
 protocol ShellCommandWrapper {

@@ -15,6 +15,7 @@
 		CD525CDB25FE37BA00785326 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CDA25FE37BA00785326 /* Log.swift */; };
 		CD525CDF25FE3DB900785326 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CDE25FE3DB900785326 /* DateFormatter.swift */; };
 		CD525CE525FE43C000785326 /* ServiceLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD525CE425FE43C000785326 /* ServiceLogs.swift */; };
+		CD6BF5432731C00100CA2361 /* PathService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BF5422731C00100CA2361 /* PathService.swift */; };
 		CD6C476E25FCE0B0004BA6DD /* ServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */; };
 		CD6C477125FCE2AC004BA6DD /* ServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */; };
 		CD6C477425FCEDFB004BA6DD /* RunCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C477325FCEDFB004BA6DD /* RunCommand.swift */; };
@@ -51,6 +52,7 @@
 		CD525CDA25FE37BA00785326 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CD525CDE25FE3DB900785326 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		CD525CE425FE43C000785326 /* ServiceLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLogs.swift; sourceTree = "<group>"; };
+		CD6BF5422731C00100CA2361 /* PathService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathService.swift; sourceTree = "<group>"; };
 		CD6C476D25FCE0B0004BA6DD /* ServiceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRow.swift; sourceTree = "<group>"; };
 		CD6C477025FCE2AC004BA6DD /* ServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfo.swift; sourceTree = "<group>"; };
 		CD6C477325FCEDFB004BA6DD /* RunCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCommand.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		CD85839925FABEB700E3974F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CD6BF5422731C00100CA2361 /* PathService.swift */,
 				CDA7928C25FBFA58006FFAB1 /* AutostartService.swift */,
 			);
 			path = Services;
@@ -340,6 +343,7 @@
 				CD525CDB25FE37BA00785326 /* Log.swift in Sources */,
 				CD6C479925FD50B6004BA6DD /* HomebrewVersion.swift in Sources */,
 				CDCCCE3F25FBE5E600C3590A /* Shell.swift in Sources */,
+				CD6BF5432731C00100CA2361 /* PathService.swift in Sources */,
 				CD525CD825FE359300785326 /* LogView.swift in Sources */,
 				CD6C476E25FCE0B0004BA6DD /* ServiceRow.swift in Sources */,
 				CD6C479C25FD5117004BA6DD /* Version.swift in Sources */,

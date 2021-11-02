@@ -15,7 +15,7 @@ struct VersionCommand: ShellCommandWrapper {
     
     func exec() -> Promise<resultType> {
         Promise { seal in
-            Shell.exec("/usr/local/bin/brew -v").done { _, output, _ in
+            Shell.exec(brew: "-v").done { _, output, _ in
                 var commands = output.split(whereSeparator: \.isNewline)
                 
                 let versionString = String(commands[0].split(separator: " ")[1])

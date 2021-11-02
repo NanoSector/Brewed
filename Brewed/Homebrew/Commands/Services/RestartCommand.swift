@@ -18,6 +18,6 @@ struct RestartServiceCommand: ShellCommandWrapper {
             return Promise(error: ProcessError.IllegalArguments)
         }
 
-        return Shell.exec("/usr/local/bin/brew services restart \(service.id)").asVoid()
+        return Shell.exec(brew: "services restart \(service.id)").asVoid()
     }
 }

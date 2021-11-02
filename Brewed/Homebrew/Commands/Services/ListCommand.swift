@@ -15,7 +15,7 @@ struct ListServicesCommand: ShellCommandWrapper {
 
     func exec() -> Promise<resultType> {
         Promise { seal in
-            Shell.exec("/usr/local/bin/brew services list").done { _, output, _ in
+            Shell.exec(brew: "services list").done { _, output, _ in
                 var commands = output.split(whereSeparator: \.isNewline)
                 commands.remove(at: 0)
 
