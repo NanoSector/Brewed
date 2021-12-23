@@ -51,7 +51,7 @@ struct ServiceRow: View {
                         }
                     }
 
-                    if service.status == .stopped {
+                    if service.status == .stopped || service.status == .none {
                         Button(action: run) {
                             Image(systemName: "play")
                             Text("Run")
