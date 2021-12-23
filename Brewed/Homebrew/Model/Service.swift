@@ -35,6 +35,7 @@ enum ServiceStatus: String {
     case stopped
     case started
     case unknown
+    case none
 }
 
 enum ServiceError: Error {
