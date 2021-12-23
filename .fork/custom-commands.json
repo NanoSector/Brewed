@@ -1,25 +1,22 @@
 [
   {
-    "action" : {
-      "waitForExit" : true,
-      "path" : "\/usr\/local\/bin\/swiftformat",
-      "type" : "process",
-      "args" : "$filepath --swiftversion 5.3",
-      "showOutput" : true
-    },
-    "referenceTargets" : [
-
-    ],
+    "name" : "SwiftFormat",
     "target" : "file",
-    "name" : "SwiftFormat"
+    "action" : {
+      "path" : "\/opt\/homebrew\/bin\/swiftformat",
+      "waitForExit" : true,
+      "showOutput" : true,
+      "args" : "$filepath --swiftversion 5.3",
+      "type" : "process"
+    }
   },
   {
     "action" : {
-      "waitForExit" : true,
-      "showOutput" : true,
-      "type" : "process",
       "args" : "$path --swiftversion 5.3",
-      "path" : "\/usr\/local\/bin\/swiftformat"
+      "type" : "process",
+      "path" : "\/opt\/homebrew\/bin\/swiftformat",
+      "showOutput" : true,
+      "waitForExit" : true
     },
     "name" : "SwiftFormat Repo",
     "target" : "repository"
